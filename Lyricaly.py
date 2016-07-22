@@ -15,11 +15,18 @@ import requests
 import re
 import time
 
+count = 0
 while True:
 
 	print()
-	print("What are you listening to ?\n")
+	if count == 0:
+		print("What are you listening to ?\n")
+	else:
+		print("What are you listening to ?  (enter ':wq' to exit)\n")
+
 	songName = raw_input("")
+	if songName == ':wq' or songName == "':wq'" or songName == 'wq' or songName == "'wq'": #becase people.!
+		exit()
 
 	songName = songName.replace(" ","%20")
 
@@ -167,7 +174,7 @@ while True:
 		for _ in range(0,70):
 			print("_",end="")
 		print('\n\n')
-
+		count = count + 1
 	except:			
 		
 		print(" Sorry, Lyrics are not available.\n")
