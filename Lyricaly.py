@@ -1,4 +1,4 @@
-# Lyricaly - Get lyrics direct to your terminal
+# Lyricaly - Get lyrics directly to your terminal
 # By: vigzmv
 # www.vigneshm.com
 # https://github.com/vigzmv
@@ -24,8 +24,7 @@ while True:
 	songName = songName.replace(" ","%20")
 
 	print()
-	print(" Fetching the song...")
-	print('\n')
+	print("Fetching the song...",end="")
 
 	# Lyrics Database: MusixMatch
 	# MusixMatch claims itself to be the largerst database of lyrics.
@@ -43,7 +42,7 @@ while True:
 
 	except:
 
-		print(" Please Check Your Internet Connection and try again.")
+		print(" \n\nPlease Check Your Internet Connection and try again.\n")
 		continue
 
 
@@ -57,7 +56,7 @@ while True:
 
 	except:
 
-		print(" Search Failed! Please check the song name and Retry.")
+		print(" \n\nSearch Failed! Please check the song name and Retry.\n")
 		continue
 
 	# got the song link
@@ -75,7 +74,7 @@ while True:
 
 	except:
 
-		print(" Please Check Your Internet Connection and try again.")
+		print(" \n\nPlease Check Your Internet Connection and try again.\n")
 		continue
 
 	# get the song name form the title
@@ -83,36 +82,72 @@ while True:
 	FoundSongName = FoundSongName.replace(" lyrics | Musixmatch","")
 
 	# print the Found song name
-	found = " Found: " + FoundSongName
+	found = " Song: " + FoundSongName
 	foundlen = len(found)
 
-	print(found.encode("utf-8"))
-	print(" ",end="")
-	for _ in range(0,foundlen-1):
-		print("_",end="")
-	
 	print('\n\n')
+
+	print()
+	for _ in range(0,70):
+		print("-",end="")
+	print('\n')
+	for _ in range(0,35-(foundlen/2)):
+		print(" ",end="")
+	print(found.encode("utf-8"))
+	print()
+	print("",end="")
+	for _ in range(0,70):
+		print("-",end="")
+	
+	
 	time.sleep(2)
+	print('\n\n')
 
 	# get the lyrics
 
 	# I found that the complete lyrics are stored in a list in scripts section of the page.
 	#  a easy way to access the lyrics is by to find the substring "body" which marks
-	# the begining of the string.
+	#  the begining of the string.
 
 	try:
-		solongtext = soup2.body.findAll(text=re.compile("body"))[0]
+
+		verylongtext = soup2.body.findAll(text=re.compile('"body"'))
+		# print(len(verylongtext))	
+		solongtext = verylongtext[0]
 
 		# Lyrics are suceeded by "body"
 		start = '"body":"'
 
 		# lyics are followed by its language details
-		end = '","language":"en","languageDescription":"English"'
+		end_en = '","language":"en","languageDescription":"English"'
+		end_es = '","language":"es","languageDescription":"Spanish"'
+		end_fr = '","language":"fr","languageDescription":"French"'
+		end_un = '","language":"","languageDescription":""'
 
 		# stripping the lyrics from the long string
-		longtext = solongtext[solongtext.index(start) + len(start) : solongtext.index(end)]
 
-		# Finally th lyrics are in.
+		# checking for the lyrics languwage
+		if end_en in solongtext:
+			# english
+			longtext = solongtext[solongtext.index(start) + len(start) : solongtext.index(end_en)]
+
+		elif end_es in solongtext:
+			# spanish
+			longtext = solongtext[solongtext.index(start) + len(start) : solongtext.index(end_es)]
+
+		elif end_fr in solongtext:
+			# french
+			longtext = solongtext[solongtext.index(start) + len(start) : solongtext.index(end_fr)]
+
+		elif end_un in solongtext:
+			# unknown (hindi)
+			longtext = solongtext[solongtext.index(start) + len(start) : solongtext.index(end_un)]
+
+		else:
+			print(" Sorry, Lyrics are not available.\n")
+			continue
+
+		# Finally the lyrics are in.
 
 		ThemLovelyLyrics = ("  " + longtext)
 		
@@ -128,14 +163,14 @@ while True:
 				print(ThemLovelyLyrics[i].encode("utf-8"),end='')
 
 		print('\n')
-		print(' ',end="")
-		for _ in range(0,60):
+		print('',end="")
+		for _ in range(0,70):
 			print("_",end="")
-		print('\n')
+		print('\n\n')
 
 	except:			
 		
-		print(" Sorry, Lyrics are not available.")
+		print(" Sorry, Lyrics are not available.\n")
 		continue
 
 # End
