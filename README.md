@@ -1,7 +1,7 @@
 # Lyricaly
 ###:musical_note: Get Lyrics directly on your Terminal  
 
-#### Just because finding lyrics on a web browser is too mainstream, I made this to get them delivered to your Terminal. :sunglasses:
+#### Just because finding lyrics on a web browser is too mainstream, I made this to get them delivered to your Terminal.
 
 #### Lyricaly gets Lyrics directly delivered to your Terminal for any Song. Uses bs4 and requests to scrap lyrics for you.  
 #### Published at pypi: [Lyricaly](https://pypi.python.org/pypi/lyricaly).
@@ -41,7 +41,7 @@
     requests  
 ---
 
-#### Lyricaly scraps the lyrics of the given song from www.musixmatch.com   
+##### Lyricaly scraps the lyrics of the given song from www.musixmatch.com   
 ##### I am in no way associated with musixmatch and the correctness of lyrics corresponds with the data present in the database.
 ##### Lyricaly only scraps the present data from there and delivers it.
 
