@@ -1,28 +1,44 @@
 # Lyricaly
-###:musical_note: Get Lyrics directly to your Teminal/CommandLine  
+###:musical_note: Get Lyrics directly on your Terminal  
 
-### Just because finding lyrics on a web browser is too mainstream, I made this to get them delivered to your Terminal. :sunglasses:
+#### Just because finding lyrics on a web browser is too mainstream, I made this to get them delivered to your Terminal. :sunglasses:
+
+#### Lyricaly gets Lyrics directly delivered to your Terminal for any Song. Uses bs4 and requests to scrap lyrics for you.  
+#### Published at pypi: [Lyricaly](https://pypi.python.org/pypi/lyricaly).
 
 
 ## Installation
 ---
-### Prerequisites
-    # BeautifulSoup
-    $ pip install beautifulsoup
+
+### Using pip
+
+    # Install packagae from pypi
+    $ pip install lyricaly
     
-    # Python Requests
-    $ pip install requests  
+    # Run it
+    $ lyricaly
     
-### Installation
+    # Done!!
+    
+
+### Without using pip
     
     # Clone the repository
     $ git clone https://github.com/vigzmv/Lyricaly.git
-    $ cd Lyricaly
+    $ cd lyricaly
+    
+    # Install lyricaly
+    $ sudo python setup.py install
     
     # Run it
-    $ python Lyricaly.py
+    $ lyricaly
     
-    # or simply get the Python Script and use it.
+    # or simply execute the Python Script (lyrical.py)
+    # Done!!
+    
+### install_requires
+    beautifulsoup
+    requests  
 ---
 
 #### Lyricaly scraps the lyrics of the given song from www.musixmatch.com   
