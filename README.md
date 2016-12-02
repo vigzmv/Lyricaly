@@ -11,7 +11,7 @@
 
 #### Just because finding lyrics on a web browser is too mainstream, I made this to get them delivered to your Terminal.
 
-#### Lyricaly gets Lyrics directly delivered to your Terminal for any Song. Uses beautifulsoup4 to scrap lyrics.  
+#### Lyricaly gets Lyrics delivered to your Terminal for any Song. Uses beautifulsoup4 to scrap lyrics.  
 #### Published at pypi: [Lyricaly](https://pypi.python.org/pypi/lyricaly)
 
 
