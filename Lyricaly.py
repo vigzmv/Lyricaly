@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Lyricaly - Get lyrics directly to your terminal
 # By: vigzmv
 # www.vigneshm.com
@@ -14,6 +16,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import time
+import urllib2
 
 count = 0
 while True:
@@ -22,13 +25,13 @@ while True:
 	if count == 0:
 		print("What are you listening to ?\n")
 	else:
-		print("What are you listening to ?  (enter ':wq' to exit)\n")
+		print("What are you listening to ?  (enter 'exit' to exit)\n")
 
 	songName = raw_input("")
-	if songName == ':wq' or songName == "':wq'" or songName == 'wq' or songName == "'wq'": #becase people.!
+	if songName == 'exit':
 		exit()
 
-	songName = songName.replace(" ","%20")
+	songName = songName.replace(" ","+")
 
 	print()
 	print("Fetching the song...",end="")
@@ -36,12 +39,13 @@ while True:
 	# Lyrics Database: MusixMatch
 	# MusixMatch claims itself to be the largerst database of lyrics.
 	# Their search is very effective as they automaticaly choose the best match by
-	#  parameters like recent trends and popularity. Hence the lyrics can be found with 
-	#  least keywords.
+	# parameters like recent trends and popularity. Hence the lyrics can be found with
+	# least keywords.
 
 
 	# Searching for the song
-	url1 = "https://www.musixmatch.com/search/" + songName
+
+	url1 = "http://search.azlyrics.com/search.php?q=" + songName
 
 	try:
 		respons1 = requests.get(url1)
@@ -56,8 +60,9 @@ while True:
 	# Get the Best Search result.
 	try:
 		# bestresult appears first at top in a box
-		BestResult = soup1.find_all("div",{"class":"box-style-plain"})
+		BestResult = soup1.find_all("td",{"class":"text-left"})
 
+		# print(BestResult)
 		# get the song lyrics page link
 		Link = BestResult[0].find_all("a")[0].get("href")
 
@@ -67,18 +72,19 @@ while True:
 		continue
 
 	# got the song link
-	LyricUrl = "https://www.musixmatch.com" + Link
+	LyricUrl = Link
 
-
-	# print(LyricUrl)
+	print(LyricUrl)
 
 	# open the lyrics page
 
 	try:
 
-		respons2 = requests.get(LyricUrl)
-		soup2 = BeautifulSoup(respons2.content,'html.parser')
-
+		# respons2 = requests.get(LyricUrl)
+		respons2 = urllib2.urlopen(LyricUrl)
+		# print(respons2)
+		soup2 = BeautifulSoup(respons2.read(),'html.parser')
+		# print(soup2)
 	except:
 
 		print(" \n\nPlease Check Your Internet Connection and try again.\n")
@@ -86,7 +92,8 @@ while True:
 
 	# get the song name form the title
 	FoundSongName = soup2.title.string
-	FoundSongName = FoundSongName.replace(" lyrics | Musixmatch","")
+
+	# FoundSongName = FoundSongName.replace(" lyrics | Musixmatch","")
 
 	# print the Found song name
 	found = " Song: " + FoundSongName
@@ -105,8 +112,8 @@ while True:
 	print("",end="")
 	for _ in range(0,70):
 		print("-",end="")
-	
-	
+
+
 	time.sleep(2)
 	print('\n\n')
 
@@ -118,8 +125,10 @@ while True:
 
 	try:
 
-		verylongtext = soup2.body.findAll(text=re.compile('"body"'))
-		# print(len(verylongtext))	
+		verylongtext = soup2.body.findAll(text=re.compile('<!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->'))
+
+		print(verylongtext)
+
 		solongtext = verylongtext[0]
 
 		# Lyrics are suceeded by "body"
@@ -157,7 +166,7 @@ while True:
 		# Finally the lyrics are in.
 
 		ThemLovelyLyrics = ("  " + longtext)
-		
+
 		# Formating the lyrics to show with newlines and ignoring special chahracters
 		for i in range(0,len(ThemLovelyLyrics)):
 			if ThemLovelyLyrics[i] == '\\' and ThemLovelyLyrics[i+1] == 'n':
@@ -175,8 +184,8 @@ while True:
 			print("_",end="")
 		print('\n\n')
 		count = count + 1
-	except:			
-		
+	except:
+
 		print(" Sorry, Lyrics are not available.\n")
 		continue
 
