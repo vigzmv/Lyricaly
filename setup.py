@@ -3,16 +3,17 @@ from setuptools import setup
 setup(
     name='lyricaly',
     packages=["lyricaly"],
-    version='1.0.2',
+    version='1.0.4',
     author='Vignesh M',
     author_email='vigzmv@outlook.com',
     url='https://github.com/vigzmv/Lyricaly',
     download_url='https://github.com/vigzmv/Lyricaly',
     license='MIT License',
     description='Lyricaly Gets Lyrics directly to your Terminal.',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     zip_safe=False,
-    install_requires = ['beautifulsoup','requests','bs4'],
+    keywords='lyrics vigzmv music songs lyricaly vignesh m',
+    install_requires = ['beautifulsoup','beautifulsoup4','requests','bs4'],
     entry_points={
     'console_scripts': [
         'lyricaly=lyricaly.__main__:main',
