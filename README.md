@@ -1,11 +1,7 @@
 # Lyricaly
 
-[![PyPI](https://img.shields.io/pypi/v/nine.svg?style=flat-square)]() &nbsp;&nbsp;
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/vigzmv/Lyricaly/blob/master/LICENSE)  &nbsp;&nbsp;
+[![PyPI version](https://badge.fury.io/py/lyricaly.svg)](https://badge.fury.io/py/lyricaly) &nbsp;&nbsp; [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/vigzmv/Lyricaly/blob/master/LICENSE)  &nbsp;&nbsp;
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/vigzmv/Lyricaly) &nbsp;&nbsp;
-
-
-
 
 ###:musical_note: Get Lyrics on your Terminal  
 
