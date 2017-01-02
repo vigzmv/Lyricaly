@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='lyricaly',
     packages=["lyricaly"],
-    version='1.0.4',
+    version='1.0.5',
     author='Vignesh M',
     author_email='vigzmv@outlook.com',
     url='https://github.com/vigzmv/Lyricaly',
